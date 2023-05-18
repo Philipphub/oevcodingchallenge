@@ -27,8 +27,8 @@ export const ShoppingList: React.FunctionComponent<IShoppingListProps> = (
             <div className="row row-cols-2">
               {props.products.map((item: IProducts) => {
                 return (
-                  <div className="col p-3">
-                    <div className="card" key={item.id}>
+                  <div className="col p-3" key={item.id}>
+                    <div className="card">
                       <img
                         src={item.thumbnail}
                         className="card-img-top"
