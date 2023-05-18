@@ -1,6 +1,5 @@
+"use client";
 import React from "react";
-
-import styles from "@/app/page.module.css";
 
 import { truncateString } from "@/util/util";
 import { IProducts } from "@/model/IProducts";
@@ -12,20 +11,40 @@ interface IShoppingListProps {
 export const ShoppingList: React.FunctionComponent<IShoppingListProps> = (
   props
 ) => {
+  const [products, setProducts] = React.useState<IProducts[]>([]);
+
+  React.useEffect(() => {
+    setProducts(props.products);
+  }, [props.products]);
+
   return (
-    <main className={styles.main}>
-      <div className="container">
+    <div className="container mt-5">
+      <div className="container ">
         <nav className="navbar bg-body-tertiary">
           <div className="container-fluid">
-            <span className="navbar-brand mb-0 h1">Navbar</span>
+            <input
+              className="form-control"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              style={{ width: 824 }}
+              onChange={(e) => {
+                const filteredProducts = props.products.filter((item) => {
+                  return item.title
+                    .toLowerCase()
+                    .includes(e.target.value.toLowerCase());
+                });
+                setProducts(filteredProducts);
+              }}
+            />
           </div>
         </nav>
       </div>
       <div className="container mt-3">
-        <div className="row row-cols-2">
+        <div className="row row-cols-2 justify-content-start">
           <div className="col-8">
             <div className="row row-cols-2">
-              {props.products.map((item: IProducts) => {
+              {products.map((item: IProducts) => {
                 return (
                   <div className="col p-3" key={item.id}>
                     <div className="card">
@@ -72,6 +91,6 @@ export const ShoppingList: React.FunctionComponent<IShoppingListProps> = (
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 };
