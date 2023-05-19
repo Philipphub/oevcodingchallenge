@@ -225,7 +225,7 @@ export const ShoppingList: React.FunctionComponent<IShoppingListProps> = (
       </div>
       <NewProductModal
         openNewProductModal={openNewProductModal}
-        setOpenNewProductModal={() => setOpenNewProductModal}
+        setOpenNewProductModal={setOpenNewProductModal}
         onChangeNewProduct={onChangeNewProduct}
         handleAddToCart={handleAddToCart}
         newProduct={newProduct}
