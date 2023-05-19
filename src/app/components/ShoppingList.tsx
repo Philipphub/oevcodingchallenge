@@ -39,7 +39,7 @@ export const ShoppingList: React.FunctionComponent<IShoppingListProps> = (
       id: Math.round(Math.random() * 1000000),
       title: item.title,
       description: item.description,
-      price: item.price,
+      price: parseInt(String(item.price)),
     };
     const newCart = [...cart, formattedItem];
     setCart(newCart);
