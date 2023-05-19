@@ -1,17 +1,9 @@
 import "bootstrap/dist/css/bootstrap.css";
-import { ShoppingList } from "@/app/ShoppingList";
-
-async function getData() {
-  const res = await fetch("https://dummyjson.com/products");
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
-}
+import { ShoppingList } from "@/app/components/ShoppingList";
+import { getProducts } from "@/api/products-dao";
 
 export default async function Home() {
-  const products = await getData();
+  const products = await getProducts();
 
   return <ShoppingList products={products.products} />;
 }
