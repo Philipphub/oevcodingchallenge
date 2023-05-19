@@ -3,7 +3,7 @@ import React from "react";
 
 import { truncateString } from "@/util/util";
 import { IProducts } from "@/model/IProducts";
-import { Button, Modal } from "react-bootstrap";
+import { NewProductModal } from "@/app/components/NewProductModal";
 
 interface IShoppingListProps {
   products: IProducts[];
@@ -223,63 +223,13 @@ export const ShoppingList: React.FunctionComponent<IShoppingListProps> = (
           </div>
         </div>
       </div>
-      <Modal
-        show={openNewProductModal}
-        onHide={() => setOpenNewProductModal(false)}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Add New Product
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <label htmlFor="basic-url" className="form-label">
-            Title
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="basic-url"
-            aria-describedby="basic-addon3 basic-addon4"
-            name="title"
-            onChange={(e) => {
-              onChangeNewProduct(e);
-            }}
-          />
-          <label htmlFor="basic-url" className="form-label mt-3">
-            Price
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="basic-url"
-            aria-describedby="basic-addon3 basic-addon4"
-            name="price"
-            onChange={(e) => {
-              onChangeNewProduct(e);
-            }}
-          />
-          <label htmlFor="basic-url" className="form-label mt-3">
-            Description
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="basic-url"
-            aria-describedby="basic-addon3 basic-addon4"
-            name="description"
-            onChange={(e) => {
-              onChangeNewProduct(e);
-            }}
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => handleAddToCart(newProduct)}>Add</Button>
-        </Modal.Footer>
-      </Modal>
+      <NewProductModal
+        openNewProductModal={openNewProductModal}
+        setOpenNewProductModal={() => setOpenNewProductModal}
+        onChangeNewProduct={onChangeNewProduct}
+        handleAddToCart={handleAddToCart}
+        newProduct={newProduct}
+      />
     </div>
   );
 };
